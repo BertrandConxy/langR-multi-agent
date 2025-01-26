@@ -2,7 +2,7 @@ from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import create_react_agent
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage
-from tools import wikipedia_search, arxiv_search, retriever_tool
+from tools import wikipedia_search, arxiv_search
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -13,7 +13,7 @@ model = ChatOpenAI(model="gpt-4o-mini", temperature=0).bind(
 )
 
 # Define tools
-tools = [wikipedia_search(), arxiv_search(), retriever_tool()]
+tools = [wikipedia_search(), arxiv_search()]
 
 # Initialize memory
 memory = MemorySaver()
