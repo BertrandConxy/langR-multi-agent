@@ -1,9 +1,8 @@
-from langchain_openai import ChatOpenAI
 from langgraph.checkpoint.memory import MemorySaver
-from langchain_core.messages import SystemMessage, HumanMessage
 from langgraph.prebuilt import create_react_agent
-from tools import get_weather
-
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import SystemMessage, HumanMessage
+from tools import wikipedia_search, arxiv_search, retriever_tool
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -14,7 +13,7 @@ model = ChatOpenAI(model="gpt-4o-mini", temperature=0).bind(
 )
 
 # Define tools
-tools = [get_weather]
+tools = [wikipedia_search(), arxiv_search(), retriever_tool()]
 
 # Initialize memory
 memory = MemorySaver()
